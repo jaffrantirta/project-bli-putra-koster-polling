@@ -19,7 +19,7 @@ import {
 } from "@/interfaces/reducerInterface";
 
 interface QuestionnaireContextType {
-  store: (data: { mau_seperti_apa_2024: string; desa: string }) => Promise<any>;
+  store: (data: { answer: string; desa: string }) => Promise<any>;
   fetch: () => Promise<any>;
 }
 
@@ -46,7 +46,7 @@ async function store(values: any, dispatch: Dispatch<ReducerAction>) {
     return;
   }
   const { data, error } = await supabase
-    .from("kondisijembrana_questionnaire")
+    .from("kosterlanjutatautidak")
     .insert(values)
     .select();
 
@@ -62,9 +62,9 @@ async function store(values: any, dispatch: Dispatch<ReducerAction>) {
 
 async function fetchPerubahan(dispatch: Dispatch<ReducerAction>) {
   const { data, error } = await supabase
-    .from("kondisijembrana_questionnaire")
+    .from("kosterlanjutatautidak")
     .select("*")
-    .eq("mau_seperti_apa_2024", "Perubahan")
+    .eq("answer", "Perubahan")
     .order("created_at", { ascending: false });
 
   if (error) {
@@ -77,9 +77,9 @@ async function fetchPerubahan(dispatch: Dispatch<ReducerAction>) {
 
 async function fetchNotPerubahan(dispatch: Dispatch<ReducerAction>) {
   const { data, error } = await supabase
-    .from("kondisijembrana_questionnaire")
+    .from("kosterlanjutatautidak")
     .select("*")
-    .neq("mau_seperti_apa_2024", "Perubahan")
+    .neq("answer", "Perubahan")
     .order("created_at", { ascending: false });
 
   if (error) {
@@ -92,7 +92,7 @@ async function fetchNotPerubahan(dispatch: Dispatch<ReducerAction>) {
 
 async function fetch(dispatch: Dispatch<ReducerAction>) {
   const { data, error } = await supabase
-    .from("kondisijembrana_questionnaire")
+    .from("kosterlanjutatautidak")
     .select("*")
     .order("created_at", { ascending: false });
 
