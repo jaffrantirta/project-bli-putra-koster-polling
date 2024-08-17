@@ -28,7 +28,7 @@ export default function Navbar_() {
     },
     {
       label: "Berita",
-      href: "https://news.kondisijembrana.com",
+      href: "https://news.tokohdewata.com",
     },
   ];
 
@@ -41,7 +41,7 @@ export default function Navbar_() {
         />
         <NavbarBrand>
           <Image src="/logokj.png" className="w-16 h-16 aspect-square" />
-          <p className="font-bold">Kondisi Jembrana</p>
+          <p className="font-bold">Wayan Koster</p>
         </NavbarBrand>
       </NavbarContent>
 
