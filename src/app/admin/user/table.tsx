@@ -23,22 +23,22 @@ export default function Table() {
       <thead>
         <tr className="bg-gray-100">
           <th className="px-4 py-2 font-bold">Pilihan</th>
-          <th className="px-4 py-2 font-bold">Kecamatan</th>
-          <th className="px-4 py-2 font-bold">Kelurahan/Desa</th>
+          <th className="px-4 py-2 font-bold">kabupaten</th>
+          {/* <th className="px-4 py-2 font-bold">Kelurahan/Desa</th> */}
         </tr>
       </thead>
       <tbody>
         {questionnaire.data.map((data: any) => (
           <tr key={data.id} className="odd:bg-white even:bg-gray-50">
             <td className="px-4 py-2 border-t border-b border-gray-300">
-              {data.mau_seperti_apa_2024}
+              {data.answer}
             </td>
             <td className="px-4 py-2 border-t border-b border-gray-300">
-              {data.kecamatan}
+              {data.kabupaten}
             </td>
-            <td className="px-4 py-2 border-t border-b border-gray-300">
+            {/* <td className="px-4 py-2 border-t border-b border-gray-300">
               {data.kelurahan}
-            </td>
+            </td> */}
           </tr>
         ))}
       </tbody>

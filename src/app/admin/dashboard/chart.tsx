@@ -8,13 +8,15 @@ import { Doughnut } from "react-chartjs-2";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 interface Questionnaire {
-  mau_seperti_apa_2024: string;
+  answer: string;
 }
 
 export default function Chart() {
   const { questionnaire, fetch } = useContext(QuestionnaireContext);
-  const [perubahan, setPerubahan] = useState<number>(0);
-  const [lanjutkan, setLanjutkan] = useState<number>(0);
+  const [kg, setKG] = useState<number>(0);
+  const [ka, setKA] = useState<number>(0);
+  const [mm, setMM] = useState<number>(0);
+  const [sm, setSM] = useState<number>(0);
 
   useEffect(() => {
     async function fetchData() {
@@ -28,28 +30,41 @@ export default function Chart() {
   }, [questionnaire]);
 
   const sorting = (data: Questionnaire[]) => {
-    let perubahanCount = 0;
-    let lanjutkanCount = 0;
+    let kgCount = 0;
+    let kaCount = 0;
+    let mmCount = 0;
+    let smCount = 0;
 
     data.forEach((element) => {
-      if (element.mau_seperti_apa_2024 === "Lanjutkan") {
-        lanjutkanCount++;
-      } else {
-        perubahanCount++;
+      if (element.answer === "Koster - Ace") {
+        kaCount++;
+      } else if (element.answer === "Koster - Giri") {
+        kgCount++;
+      } else if (element.answer === "Mantra - Mulia") {
+        mmCount++;
+      } else if (element.answer === "Suradnyana - Mulia") {
+        smCount++;
       }
     });
 
-    setLanjutkan(lanjutkanCount);
-    setPerubahan(perubahanCount);
+    setKA(kaCount);
+    setKG(kgCount);
+    setMM(mmCount);
+    setSM(smCount);
   };
 
   const data = {
-    labels: ["Perubahan", "Lanjutkan"],
+    labels: [
+      "Koster - Giri",
+      "Koster - Ace",
+      "Mantra - Mulia",
+      "Suradnyana - Mulia",
+    ],
     datasets: [
       {
-        data: [perubahan, lanjutkan],
-        backgroundColor: ["#FF6384", "#36A2EB"],
-        hoverBackgroundColor: ["#FF6384", "#36A2EB"],
+        data: [kg, ka, mm, sm],
+        backgroundColor: ["#FF6384", "#36A2EB", "#817217", "#891891"],
+        hoverBackgroundColor: ["#FF6384", "#36A2EB", "#817217", "#891891"],
       },
     ],
   };
@@ -60,18 +75,36 @@ export default function Chart() {
         Polling Results
       </div>
       <div className="flex justify-center">
-        <div className="w-full md:w-1/2">
+        <div className="w-full">
           <Doughnut data={data} />
         </div>
       </div>
-      <div className="mt-8 flex flex-col md:flex-row justify-around items-center">
+      <div className="mt-8 flex gap-5 flex-col md:flex-row justify-around items-center">
         <div className="text-center md:mb-0 mb-8">
-          <div className="text-2xl font-semibold text-primary">Perubahan</div>
-          <div className="text-5xl font-bold text-gray-800">{perubahan}</div>
+          <div className="text-2xl font-semibold text-primary">
+            Koster - Giri
+          </div>
+          <div className="text-5xl font-bold text-gray-800">{kg}</div>
         </div>
         <div className="text-center">
-          <div className="text-2xl font-semibold text-primary">Lanjutkan</div>
-          <div className="text-5xl font-bold text-gray-800">{lanjutkan}</div>
+          <div className="text-2xl font-semibold text-primary">
+            Koster - Ace
+          </div>
+          <div className="text-5xl font-bold text-gray-800">{ka}</div>
+        </div>
+
+        <div className="text-center">
+          <div className="text-2xl font-semibold text-primary">
+            Mantra - Mulia
+          </div>
+          <div className="text-5xl font-bold text-gray-800">{mm}</div>
+        </div>
+
+        <div className="text-center">
+          <div className="text-2xl font-semibold text-primary">
+            Suradnyana - Mulia
+          </div>
+          <div className="text-5xl font-bold text-gray-800">{sm}</div>
         </div>
       </div>
     </div>
