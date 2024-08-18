@@ -41,7 +41,7 @@ export default function Navbar_() {
         />
         <NavbarBrand>
           <Image src="/logokj.png" className="w-16 h-16 aspect-square" />
-          <p className="font-bold">Wayan Koster</p>
+          <p className="font-bold">Tokoh Dewata</p>
         </NavbarBrand>
       </NavbarContent>
 
