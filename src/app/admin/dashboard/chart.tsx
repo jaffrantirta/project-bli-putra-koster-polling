@@ -19,14 +19,10 @@ export default function Chart() {
   const [sm, setSM] = useState<number>(0);
 
   useEffect(() => {
-    async function fetchData() {
-      await fetch();
-
-      if (questionnaire && questionnaire.data !== null) {
-        sorting(questionnaire.data);
-      }
+    fetch();
+    if (questionnaire && questionnaire.data !== null) {
+      sorting(questionnaire.data);
     }
-    fetchData();
   }, [questionnaire]);
 
   const sorting = (data: Questionnaire[]) => {
@@ -70,7 +66,7 @@ export default function Chart() {
   };
 
   return (
-    <div className="p-6 bg-white rounded-3xl shadow-lg max-w-4xl mx-auto">
+    <div className="md:p-6 bg-white rounded-3xl shadow-lg mx-auto">
       <div className="text-3xl font-bold text-primary mb-4 text-center">
         Polling Results
       </div>
