@@ -54,7 +54,9 @@ export default function Form() {
     >
       <Card className="w-fit mx-5 md:mx-auto">
         <CardHeader className="text-center font-bold text-xl">
-          {showResult ? "" : "Yuk isi kuesioner ini dulu"}
+          {showResult
+            ? ""
+            : "Pilihan Gubernur - Wakil Gubernur Bali Favorit kamu di 2024?"}
         </CardHeader>
         <CardBody>
           {showResult ? (
@@ -69,7 +71,7 @@ export default function Form() {
           ) : (
             <div className="flex flex-col gap-3">
               <div className="flex flex-col gap-3">
-                <p>2024 pilih siapa?</p>
+                <p>Pilih favoritmu!</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <Image
                     className="w-full md:w-32 aspect-video object-cover"
