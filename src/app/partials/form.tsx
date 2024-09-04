@@ -76,7 +76,7 @@ export default function Form() {
                   <Image
                     className="w-full md:w-32 aspect-video object-cover"
                     alt="koster - giri"
-                    src="/candidates/koster - giri.png"
+                    src="/candidates/1.png"
                   />
                   <Button
                     onClick={() => {
@@ -99,72 +99,24 @@ export default function Form() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <Image
                     className="w-full md:w-32 aspect-video object-cover"
-                    alt="Koster - Ace"
-                    src="/candidates/koster - ace.png"
+                    alt="Mulia - PAS"
+                    src="/candidates/2.png"
                   />
                   <Button
                     onClick={() => {
-                      setValue("answer", "Koster - Ace");
+                      setValue("answer", "Mulia - PAS");
                     }}
                     variant="bordered"
                     color={
                       values.answer === undefined
                         ? "default"
-                        : values.answer == "Koster - Ace"
+                        : values.answer == "Mulia - Pas"
                         ? "primary"
                         : "default"
                     }
                     type="button"
                   >
-                    Koster - Ace
-                  </Button>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  <Image
-                    className="w-full md:w-32 aspect-video object-cover"
-                    alt="Mantra - Mulia"
-                    src="/candidates/mantra - mulia.png"
-                  />
-                  <Button
-                    onClick={() => {
-                      setValue("answer", "Mantra - Mulia");
-                    }}
-                    variant="bordered"
-                    color={
-                      values.answer === undefined
-                        ? "default"
-                        : values.answer == "Mantra - Mulia"
-                        ? "primary"
-                        : "default"
-                    }
-                    type="button"
-                  >
-                    Mantra - Mulia
-                  </Button>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  <Image
-                    className="w-full md:w-32 aspect-video object-cover"
-                    alt="Suradnyana - Mulia"
-                    src="/candidates/suradnyana - mulia.png"
-                  />
-                  <Button
-                    onClick={() => {
-                      setValue("answer", "Suradnyana - Mulia");
-                    }}
-                    variant="bordered"
-                    color={
-                      values.answer === undefined
-                        ? "default"
-                        : values.answer == "Suradnyana - Mulia"
-                        ? "primary"
-                        : "default"
-                    }
-                    type="button"
-                  >
-                    Suradnyana - Mulia
+                    Mulia - PAS
                   </Button>
                 </div>
               </div>
