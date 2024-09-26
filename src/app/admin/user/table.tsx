@@ -4,14 +4,7 @@ import React, { useContext, useEffect } from "react";
 import { LoaderIcon } from "react-hot-toast";
 
 export default function Table() {
-  const { questionnaire, fetch } = useContext(QuestionnaireContext);
-
-  useEffect(() => {
-    async function fetchData() {
-      await fetch();
-    }
-    fetchData();
-  }, []);
+  const { questionnaire } = useContext(QuestionnaireContext);
 
   if (questionnaire.loading) return <LoaderIcon />;
   if (!questionnaire || questionnaire.data === null) {
