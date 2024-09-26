@@ -90,31 +90,46 @@ async function fetchNotPerubahan(dispatch: Dispatch<ReducerAction>) {
   dispatch({ type: "FETCH_SUCCESS", payload: data });
 }
 
-async function fetch(dispatch: Dispatch<ReducerAction>) {
-  const { data, error } = await supabase
-    .from("kosterlanjutatautidak")
-    .select("*")
-    .order("created_at", { ascending: false });
+async function fetch(dispatch: Dispatch<ReducerAction>, answer: string) {
+  if (answer === "") {
+    const { data, error } = await supabase
+      .from("kosterlanjutatautidak")
+      .select("*")
+      .order("created_at", { ascending: false });
 
-  if (error) {
-    dispatch({ type: "FETCH_FAILURE", error: error.message });
-    toast.error(error.message);
-    throw new Error(error.message);
+    if (error) {
+      dispatch({ type: "FETCH_FAILURE", error: error.message });
+      toast.error(error.message);
+      throw new Error(error.message);
+    }
+    dispatch({ type: "FETCH_SUCCESS", payload: data });
+  } else {
+    const { data, error } = await supabase
+      .from("kosterlanjutatautidak")
+      .select("*")
+      .eq("kabupaten", answer)
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      dispatch({ type: "FETCH_FAILURE", error: error.message });
+      toast.error(error.message);
+      throw new Error(error.message);
+    }
+    dispatch({ type: "FETCH_SUCCESS", payload: data });
   }
-  dispatch({ type: "FETCH_SUCCESS", payload: data });
 }
 
 export const QuestionnaireContext = createContext<{
   questionnaire: ReducerState;
   dispatch: Dispatch<ReducerAction>;
-  fetch: () => Promise<void>;
+  fetch: (answer: string) => Promise<void>;
   fetchPerubahan: () => Promise<void>;
   fetchNotPerubahan: () => Promise<void>;
   store: (values: any) => Promise<void>;
 }>({
   questionnaire: initialState,
   dispatch: () => {},
-  fetch: () => Promise.resolve(),
+  fetch: (answer: string) => Promise.resolve(),
   fetchPerubahan: () => Promise.resolve(),
   fetchNotPerubahan: () => Promise.resolve(),
   store: () => Promise.resolve(),
@@ -125,7 +140,7 @@ const QuestionnaireProvider = ({ children }: { children: ReactNode }) => {
   const contextValue = {
     questionnaire,
     dispatch,
-    fetch: () => fetch(dispatch),
+    fetch: (answer: string) => fetch(dispatch, answer),
     fetchPerubahan: () => fetchPerubahan(dispatch),
     fetchNotPerubahan: () => fetchNotPerubahan(dispatch),
     store: (values: any) => store(values, dispatch),
