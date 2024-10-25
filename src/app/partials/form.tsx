@@ -16,6 +16,7 @@ import kabupaten from "@/helpers/regional/kabupaten/51.json";
 import { useForm } from "@/helpers/form";
 import { QuestionnaireContext } from "@/context/QuestionnaireContext";
 import Chart from "../admin/dashboard/chart";
+import toast from "react-hot-toast";
 
 export default function Form() {
   const { store } = useContext(QuestionnaireContext);
@@ -28,10 +29,14 @@ export default function Form() {
 
   // Function to handle the submission of the form
   const submit = async () => {
-    await store(values);
-    reset();
-    setKabupatenId("");
-    setShowResult(true);
+    if (!values.answer.trim() || !values.kabupaten.trim()) {
+      toast.error("Pilih jawaban");
+    } else {
+      await store(values);
+      reset();
+      setKabupatenId("");
+      setShowResult(true);
+    }
   };
 
   // Function to handle changes in kabupaten selection
